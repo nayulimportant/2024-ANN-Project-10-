@@ -37,7 +37,7 @@ modelL.compile(optimizer='adam',
                 loss=categorical_crossentropy,
                 metrics=['accuracy'])
 
-history=modelL.fit(X_train, y_train, epochs=50,
+history=modelL.fit(X_train, y_train, epochs=50, batch_size=64,
                    validation_data=(X_valid, y_valid))
 
 #조기종료
