@@ -31,3 +31,19 @@ modelL = keras.models.Sequential([
 ])
 
 modelL.summary()   
+
+# model compile
+modelL.compile(optimizer='adam',
+                loss=categorical_crossentropy,
+                metrics=['accuracy'])
+
+history=modelL.fit(X_train, y_train, epochs=50,
+                   validation_data=(X_valid, y_valid))
+
+#조기종료
+early_stopping = EarlyStopping(monitor='val_accuracy', patience=5, min_delta=0.05)
+
+# Evaluation
+score=modelL.evaluate(X_test, y_test)
+X_new=X_test[:10]
+y_pred=modelL.predict(X_new)
